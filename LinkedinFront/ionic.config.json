@@ -1,0 +1,7 @@
+{
+  "name": "LinkedinFront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
