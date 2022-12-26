@@ -15,30 +15,61 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col size="auth">
+          <ion-col size="auto">
             <ion-icon name="home"></ion-icon>
             <div>Home</div>
           </ion-col>
-          <ion-col size="auth">
+          <ion-col size="auto">
             <ion-icon name="people"></ion-icon>
             <div>My network</div></ion-col
           >
-          <ion-col size="auth">
-            <ion-icon name="briefcqse"></ion-icon>
+          <ion-col size="auto">
+            <ion-icon name="briefcase"></ion-icon>
             <div>Jobs</div></ion-col
           >
-          <ion-col size="auth">
+          <ion-col size="auto">
             <ion-icon name="chatbox-ellipses"></ion-icon>
             <div>Messagin</div></ion-col
           >
-          <ion-col size="auth">
+          <ion-col size="auto">
             <ion-icon name="notifications"></ion-icon>
+            <ion-badge
+              color="danger"
+              style="
+                position: absolute;
+                margin-left: -10px;
+                margin-top: -5px;
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+              "
+            >
+              2
+            </ion-badge>
             <div>Notifications</div></ion-col
           >
-          <ion-col size="auth">
-            <ion-icon name="home"></ion-icon>
-            <div>Me</div></ion-col
+          <ion-col
+            style="cursor: pointer"
+            class="popover-menu"
+            (click)="presentPopover($event)"
+            size="auto"
           >
+            <ion-avatar>
+              <ion-img src="../../../../assets/icon/favicon.png"></ion-img>
+            </ion-avatar>
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              Me
+              <ion-icon
+                style="font-size: 16px"
+                name="caret-down-outline"
+              ></ion-icon></div
+          ></ion-col>
         </ion-row>
       </ion-grid>
     </div>

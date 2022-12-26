@@ -23,11 +23,17 @@ ion-col{
   
 }
 
-ion-col div{
+ion-col div, ion-badge{
   font-size: 12px;
   font-weight: 400;
 }
 
 ion-header{
   border-bottom: 1px solid var(--ion-color-light-tint);
+}
+
+ion-avatar{
+  width: 24px;
+  height: 24px;
+  margin: auto;
 }
