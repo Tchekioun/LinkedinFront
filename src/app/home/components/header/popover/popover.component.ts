@@ -7,6 +7,9 @@ import { PopoverController } from '@ionic/angular';
   styleUrls: ['./popover.component.scss'],
 })
 export class PopoverComponent implements OnInit {
+  onSignOut() {
+    console.log('Im signing out');
+  }
   constructor(private popoverController: PopoverController) {}
 
   ngOnInit() {}
