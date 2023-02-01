@@ -10,6 +10,7 @@ import { PopoverComponent } from './components/header/popover/popover.component'
 import { ProfileSummaryComponent } from './components/profile-summary/profile-summary.component';
 import { StartPostComponent } from './components/start-post/start-post.component';
 import { AdvertisingComponent } from './components/advertising/advertising.component';
+import { ModalComponent } from './components/start-post/modal/modal.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
@@ -20,6 +21,7 @@ import { AdvertisingComponent } from './components/advertising/advertising.compo
     ProfileSummaryComponent,
     StartPostComponent,
     AdvertisingComponent,
+    ModalComponent,
   ],
 })
 export class HomePageModule {}
