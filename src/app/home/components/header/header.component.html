@@ -1,7 +1,7 @@
 <ion-header class="ion-container ion-no-border">
   <ion-toolbar>
     <div class="toolbar-wrapper">
-      <ion-buttons slot="start" class="ion-no-padding">
+      <ion-buttons class="ion-no-padding">
         <ion-button>
           <ion-icon color="primary" class="linkedin-logo" name="logo-linkedin">
           </ion-icon>
@@ -14,24 +14,24 @@
       </ion-buttons>
 
       <ion-grid>
-        <ion-row>
-          <ion-col size="auto">
+        <ion-row class="ion-justify-content-end">
+          <ion-col class="ion-hide-md-down" size="auto">
             <ion-icon name="home"></ion-icon>
             <div>Home</div>
           </ion-col>
-          <ion-col size="auto">
+          <ion-col class="ion-hide-md-down" size="auto">
             <ion-icon name="people"></ion-icon>
             <div>My network</div></ion-col
           >
-          <ion-col size="auto">
+          <ion-col class="ion-hide-md-down" size="auto">
             <ion-icon name="briefcase"></ion-icon>
             <div>Jobs</div></ion-col
           >
-          <ion-col size="auto">
+          <ion-col class="ion-hide-md-down" size="auto">
             <ion-icon name="chatbox-ellipses"></ion-icon>
             <div>Messagin</div></ion-col
           >
-          <ion-col size="auto">
+          <ion-col class="ion-hide-md-down" size="auto">
             <ion-icon name="notifications"></ion-icon>
             <ion-badge
               color="danger"
@@ -49,6 +49,7 @@
             <div>Notifications</div></ion-col
           >
           <ion-col
+            class="ion-hide-md-down"
             style="cursor: pointer"
             class="popover-menu"
             (click)="presentPopover($event)"
