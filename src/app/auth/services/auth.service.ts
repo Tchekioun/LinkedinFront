@@ -3,16 +3,27 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
 import jwtDecode from 'jwt-decode';
-import { Observable, take, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { NewUser } from '../models/newUser.model';
-import { User } from '../models/user.model';
+import { Role, User } from '../models/user.model';
 import { UserResponse } from '../models/userResponse.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private user$ = new BehaviorSubject<User | null>(null);
+
+  get isUserLoggedIn(): Observable<boolean> {
+    return this.user$.asObservable().pipe(
+      switchMap((user: User | null) => {
+        const isUserAuthenticated = user !== null;
+        return of(isUserAuthenticated);
+      })
+    );
+  }
+
   constructor(private http: HttpClient, private router: Router) {}
 
   private httpOptions: { headers: HttpHeaders } = {
@@ -41,6 +52,7 @@ export class AuthService {
         tap((response: { token: string }) => {
           Preferences.set({ key: 'token', value: response.token });
           const decodedToken: UserResponse = jwtDecode(response.token);
+          this.user$.next(decodedToken.user);
           console.log(decodedToken);
         })
       );
