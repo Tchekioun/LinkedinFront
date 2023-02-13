@@ -48,18 +48,18 @@ export class AuthService {
       .pipe(take(1));
   }
 
-  login(email: string, password: string): Observable<{ token: string }> {
+  login(email: string, password: string): Observable<{ access_token: string }> {
     return this.http
-      .post<{ token: string }>(
+      .post<{ access_token: string }>(
         `${environment.baseApiUrl}/auth/login`,
         { email, password },
         this.httpOptions
       )
       .pipe(
         take(1),
-        tap((response: { token: string }) => {
-          Preferences.set({ key: 'token', value: response.token });
-          const decodedToken: UserResponse = jwtDecode(response.token);
+        tap((response: { access_token: string }) => {
+          Preferences.set({ key: 'token', value: response.access_token });
+          const decodedToken: UserResponse = jwtDecode(response.access_token);
           this.user$.next(decodedToken.user);
           console.log(decodedToken);
         })
