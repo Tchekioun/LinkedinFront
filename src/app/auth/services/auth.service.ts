@@ -1,9 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Preferences } from '@capacitor/preferences';
+import { GetResult, Preferences } from '@capacitor/preferences';
 import jwtDecode from 'jwt-decode';
-import { BehaviorSubject, Observable, of, switchMap, take, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  from,
+  map,
+  Observable,
+  of,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { NewUser } from '../models/newUser.model';
 import { Role, User } from '../models/user.model';
@@ -64,6 +73,26 @@ export class AuthService {
           console.log(decodedToken);
         })
       );
+  }
+
+  isTokenInStorage(): Observable<boolean | null | undefined> {
+    return from(
+      Preferences.get({
+        key: 'token',
+      })
+    ).pipe(
+      map((data: GetResult) => {
+        if (!data || !data.value) return null;
+        const decodedToken: UserResponse = jwtDecode(data.value);
+        const jwtExp = decodedToken.exp * 1000;
+        const isExpired = new Date() > new Date(jwtExp);
+        if (isExpired) return null;
+        if (decodedToken.user) {
+          this.user$.next(decodedToken.user);
+          return true;
+        }
+      })
+    );
   }
 
   logout(): void {
